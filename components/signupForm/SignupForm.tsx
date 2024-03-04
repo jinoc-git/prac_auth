@@ -44,45 +44,49 @@ const SignupForm = () => {
               필수 정보를 입력해 주세요.
             </p>
           </div>
-          <SignupFormInput
-            control={signupForm.control}
-            name="username"
-            label="이름"
-            placeholder="홍길동"
-          />
-          <SignupFormInput
-            control={signupForm.control}
-            name="email"
-            label="이메일"
-            placeholder="example@example.com"
-          />
-          <SignupFormInput
-            control={signupForm.control}
-            name="phone"
-            label="연락처"
-            placeholder="01012345678"
-          />
-          <SignupFormSelectInput
-            control={signupForm.control}
-            name="role"
-            label="역할"
-            placeholder="역할을 선택해 주세요."
-            item={roleItemList}
-          />
-          <SignupFormInput
-            control={signupForm.control}
-            name="password"
-            label="비밀번호"
-            placeholder="비밀번호를 입력해 주세요."
-            type="password"
-          />
-          <SignupFormInput
-            control={signupForm.control}
-            name="confirmPassword"
-            label="비밀번호 확인"
-            placeholder="비밀번호를 다시 입력해 주세요."
-            type="password"
-          />
+          <div>
+            <SignupFormInput
+              control={signupForm.control}
+              name="username"
+              label="이름"
+              placeholder="홍길동"
+            />
+            <SignupFormInput
+              control={signupForm.control}
+              name="email"
+              label="이메일"
+              placeholder="example@example.com"
+            />
+            <SignupFormInput
+              control={signupForm.control}
+              name="phone"
+              label="연락처"
+              placeholder="01012345678"
+            />
+            <SignupFormSelectInput
+              control={signupForm.control}
+              name="role"
+              label="역할"
+              placeholder="역할을 선택해 주세요."
+              item={roleItemList}
+            />
+          </div>
+          <div>
+            <SignupFormInput
+              control={signupForm.control}
+              name="password"
+              label="비밀번호"
+              placeholder="비밀번호를 입력해 주세요."
+              type="password"
+            />
+            <SignupFormInput
+              control={signupForm.control}
+              name="confirmPassword"
+              label="비밀번호 확인"
+              placeholder="비밀번호를 다시 입력해 주세요."
+              type="password"
+            />
+          </div>
         </form>
       </Form>
     </section>
