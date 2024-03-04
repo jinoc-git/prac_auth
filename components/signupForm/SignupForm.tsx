@@ -34,7 +34,7 @@ const SignupForm = () => {
   });
 
   const onSubmit = (data: z.infer<typeof signupFormSchema>) => {
-    console.log(data);
+    alert(JSON.stringify(data, null, 2));
   };
 
   const onClickSignup = () => {
