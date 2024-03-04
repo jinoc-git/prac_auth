@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 const phoneRegExp = /^01([0|1|6|7|8|9])-([0-9]{3,4})-([0-9]{4})$/;
 const passwordRegExp =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?`~^&])[A-Za-z\d@$!%*#?`~^&]{6}$/;
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?`~^&])[A-Za-z\d@$!%*#?`~^&]{6,}$/;
 
 export const signupFormSchema = z
   .object({
@@ -27,7 +27,7 @@ export const signupFormSchema = z
         '비밀번호는 최소 6자리 이상, 영문, 숫자, 특수문자를 포함해야 합니다.',
       ),
   })
-  .refine(({ password, confirmPassword }) => password !== confirmPassword, {
+  .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: '비밀번호가 일치하지 않습니다.',
     path: ['confirmPassword'],
   });

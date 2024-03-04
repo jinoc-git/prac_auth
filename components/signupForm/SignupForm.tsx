@@ -12,11 +12,13 @@ import SignupFormInput from '../common/input/SignupFormInput';
 import SignupFormSelectInput from '../common/input/SignupFormSelectInput';
 import { Button } from '../ui/button';
 import { Form } from '../ui/form';
+import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
 const SignupForm = () => {
   const [step, setStep] = useState(1);
+  const { toast } = useToast();
 
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
@@ -31,7 +33,21 @@ const SignupForm = () => {
     },
   });
 
-  const onSubmit = () => {};
+  const onSubmit = (data: z.infer<typeof signupFormSchema>) => {
+    console.log(data);
+  };
+
+  const onClickSignup = () => {
+    const password = signupForm.getValues('password');
+    const confirmPassword = signupForm.getValues('confirmPassword');
+    if (password !== confirmPassword) {
+      toast({
+        variant: 'destructive',
+        title: '비밀번호가 일치하지 않습니다.',
+        duration: 800,
+      });
+    }
+  };
 
   const onClickNextStep = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -148,7 +164,11 @@ const SignupForm = () => {
               />
             </div>
             <div className="flex gap-2">
-              <Button type="submit" className={step === 1 ? 'hidden' : ''}>
+              <Button
+                type="submit"
+                className={step === 1 ? 'hidden' : ''}
+                onClick={onClickSignup}
+              >
                 계정 등록하기
               </Button>
               <Button
