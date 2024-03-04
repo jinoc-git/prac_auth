@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,6 +16,8 @@ import { Form } from '../ui/form';
 import type { z } from 'zod';
 
 const SignupForm = () => {
+  const [step, setStep] = useState(1);
+
   const signupForm = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     mode: 'onChange',
@@ -28,6 +30,39 @@ const SignupForm = () => {
       confirmPassword: '',
     },
   });
+
+  const onSubmit = () => {};
+  const onClickNextStep = () => {
+    signupForm.trigger(['username', 'email', 'phone', 'role']);
+
+    const username = signupForm.getFieldState('username');
+    const email = signupForm.getFieldState('email');
+    const phone = signupForm.getFieldState('phone');
+    const role = signupForm.getFieldState('role');
+
+    if (username.invalid || !username.isDirty) {
+      signupForm.setFocus('username');
+      return;
+    }
+    if (email.invalid || !email.isDirty) {
+      signupForm.setFocus('email');
+      return;
+    }
+    if (phone.invalid || !phone.isDirty) {
+      signupForm.setFocus('phone');
+      return;
+    }
+    if (role.invalid || !role.isDirty) {
+      signupForm.setFocus('role');
+      return;
+    }
+
+    setStep(2);
+  };
+
+  const onClickPrevStep = () => {
+    setStep(1);
+  };
 
   const roleItemList = {
     관리자: '관리자',
@@ -46,8 +81,18 @@ const SignupForm = () => {
           </p>
         </div>
         <div className="p-6 pt-0">
-          <form className="relative space-y-3 overflow-x-hidden">
-            <div className="space-y-3">
+          <form
+            onSubmit={signupForm.handleSubmit(onSubmit)}
+            className="relative space-y-3 overflow-x-hidden"
+          >
+            <div
+              className="space-y-3 transition-transform duration-300 "
+              style={
+                step === 1
+                  ? { transform: 'translateX(0) translateZ(0)' }
+                  : { transform: 'translateX(-100%) translateZ(0)' }
+              }
+            >
               <SignupFormInput
                 control={signupForm.control}
                 name="username"
@@ -64,7 +109,7 @@ const SignupForm = () => {
                 control={signupForm.control}
                 name="phone"
                 label="연락처"
-                placeholder="01012345678"
+                placeholder="010-1234-5678"
               />
               <SignupFormSelectInput
                 control={signupForm.control}
@@ -75,8 +120,12 @@ const SignupForm = () => {
               />
             </div>
             <div
-              className="space-y-3 absolute top-0 left-0 right-0"
-              style={{ transform: 'translateX(100%)' }}
+              className="space-y-3 absolute top-0 left-0 right-0 transition-transform duration-300"
+              style={
+                step === 1
+                  ? { transform: 'translateX(100%) translateZ(0)' }
+                  : { transform: 'translateX(0) translateZ(0)' }
+              }
             >
               <SignupFormInput
                 control={signupForm.control}
@@ -94,13 +143,24 @@ const SignupForm = () => {
               />
             </div>
             <div className="flex gap-2">
-              <Button type="button">계정 등록하기</Button>
-              <Button type="button">
+              <Button type="submit" className={step === 1 ? 'hidden' : ''}>
+                계정 등록하기
+              </Button>
+              <Button
+                type="button"
+                className={step === 1 ? '' : 'hidden'}
+                onClick={onClickNextStep}
+              >
                 다음 단계로
                 <MoveRightIcon className="w-4 h-4 ml-2" />
               </Button>
-              <Button type="button" variant="ghost">
-                계정 등록하기
+              <Button
+                type="button"
+                variant="ghost"
+                className={step === 1 ? 'hidden' : ''}
+                onClick={onClickPrevStep}
+              >
+                이전 단계로
               </Button>
             </div>
           </form>
