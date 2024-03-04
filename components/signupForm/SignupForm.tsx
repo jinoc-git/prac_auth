@@ -8,21 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
 import SignupFormInput from '../common/input/SignupFormInput';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '../ui/select';
+import SignupFormSelectInput from '../common/input/SignupFormSelectInput';
+import { Form } from '../ui/form';
 
 import type { z } from 'zod';
 
@@ -39,6 +26,11 @@ const SignupForm = () => {
       confirmPassword: '',
     },
   });
+
+  const roleItemList = {
+    관리자: '관리자',
+    '일반 사용자': '일반 사용자',
+  };
 
   return (
     <section className=" absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 space-y-8">
@@ -70,29 +62,12 @@ const SignupForm = () => {
             label="연락처"
             placeholder="01012345678"
           />
-          <FormField
+          <SignupFormSelectInput
             control={signupForm.control}
             name="role"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>역할</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="역할을 선택해 주세요." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="관리자">관리자</SelectItem>
-                    <SelectItem value="일반 사용자">일반 사용자</SelectItem>
-                  </SelectContent>
-                </Select>
-                <FormMessage />
-              </FormItem>
-            )}
+            label="역할"
+            placeholder="역할을 선택해 주세요."
+            item={roleItemList}
           />
           <SignupFormInput
             control={signupForm.control}
