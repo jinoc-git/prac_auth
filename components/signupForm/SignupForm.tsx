@@ -16,6 +16,13 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Input } from '../ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../ui/select';
 
 import type { z } from 'zod';
 
@@ -36,7 +43,7 @@ const SignupForm = () => {
   return (
     <section className=" absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 space-y-8">
       <Form {...signupForm}>
-        <form className="w-[380px] rounded-lg border bg-card text-card-foreground shadow-sm p-6">
+        <form className="w-[380px] rounded-lg border bg-card text-card-foreground shadow-sm p-6 space-y-3">
           <div className="flex flex-col space-y-1.5 pb-6">
             <h3 className="text-2xl font-semibold leading-none tracking-tight">
               계정을 생성합니다
@@ -90,9 +97,20 @@ const SignupForm = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>역할</FormLabel>
-                <FormControl>
-                  <Input placeholder="홍길동" {...field} />
-                </FormControl>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="역할을 선택해 주세요." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="관리자">관리자</SelectItem>
+                    <SelectItem value="일반 사용자">일반 사용자</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}
