@@ -74,7 +74,10 @@ const SignupForm = () => {
                 item={roleItemList}
               />
             </div>
-            <div className="space-y-3 absolute top-0 left-0 right-0 translate-x-full">
+            <div
+              className="space-y-3 absolute top-0 left-0 right-0"
+              style={{ transform: 'translateX(100%)' }}
+            >
               <SignupFormInput
                 control={signupForm.control}
                 name="password"

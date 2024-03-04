@@ -67,20 +67,30 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'slide-left': {
+        'slide-left-area1': {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-100%)' },
         },
-        'slide-right': {
+        'slide-right-area1': {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(0)' },
+        },
+        'slide-left-area2': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        'slide-right-area2': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'slide-left': 'slide-left 0.5s forwards',
-        'slide-right': 'slide-right 0.5s forwards',
+        'slide-left-area1': 'slide-left-area1 0.5s linear',
+        'slide-right-area1': 'slide-right-area1 0.5s linear',
+        'slide-left-area2': 'slide-left-area2 0.5s linear',
+        'slide-right-area2': 'slide-right-area2 0.5s linear',
       },
     },
   },
