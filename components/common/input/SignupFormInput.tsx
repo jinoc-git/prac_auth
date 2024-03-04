@@ -15,7 +15,7 @@ import { Input } from '@/components/ui/input';
 import type { signupFormSchema } from '@/schema/signupFormSchema';
 import type { z } from 'zod';
 
-interface SignupFormInputProps {
+export interface SignupFormInputProps {
   control: Control<z.infer<typeof signupFormSchema>>;
   name: keyof z.infer<typeof signupFormSchema>;
   label: string;
