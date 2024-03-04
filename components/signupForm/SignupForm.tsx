@@ -32,7 +32,12 @@ const SignupForm = () => {
   });
 
   const onSubmit = () => {};
-  const onClickNextStep = () => {
+
+  const onClickNextStep = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    e.preventDefault();
+
     signupForm.trigger(['username', 'email', 'phone', 'role']);
 
     const username = signupForm.getFieldState('username');
