@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google';
 
 import NextThemesProvider from '@/components/providers/NextThemesProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 import type { Metadata } from 'next';
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         >
           {children}
         </NextThemesProvider>
+        <Toaster />
       </body>
     </html>
   );
