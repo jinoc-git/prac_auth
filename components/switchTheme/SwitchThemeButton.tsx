@@ -2,52 +2,43 @@
 
 import React from 'react';
 
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+
 import { Button } from '../ui/button';
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown';
 
-import type { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu';
-
-type Checked = DropdownMenuCheckboxItemProps['checked'];
-
 const SwitchThemeButton = () => {
-  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
-  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
-  const [showPanel, setShowPanel] = React.useState<Checked>(false);
+  const { setTheme } = useTheme();
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+        <Button
+          variant="outline"
+          size="icon"
+          className=" absolute top-6 right-6"
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuCheckboxItem
-          checked={showStatusBar}
-          onCheckedChange={setShowStatusBar}
-        >
-          Status Bar
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={showActivityBar}
-          onCheckedChange={setShowActivityBar}
-          disabled
-        >
-          Activity Bar
-        </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem
-          checked={showPanel}
-          onCheckedChange={setShowPanel}
-        >
-          Panel
-        </DropdownMenuCheckboxItem>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme('light')}>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
