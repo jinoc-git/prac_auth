@@ -1,6 +1,6 @@
 # 간단한 회원가입 페이지
 
-| [노진철](https://github.com/jinoc-git) |
+| Front-End | [노진철](https://github.com/jinoc-git) |
 
 ## 프로젝트 소개
 
