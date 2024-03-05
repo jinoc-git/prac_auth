@@ -17,13 +17,13 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import type { SignupFormInputProps } from './SignupFormInput';
+import type { SignupFormInputProps } from '../signupFormInput/SignupFormInput';
 
-interface SignupFormSelectInputProps extends SignupFormInputProps {
+interface SignupFormSelectProps extends SignupFormInputProps {
   item: Record<string, string>;
 }
 
-const SignupFormSelectInput = (props: SignupFormSelectInputProps) => {
+const SignupFormSelect = (props: SignupFormSelectProps) => {
   const { control, name, label, placeholder, item } = props;
   const itemList = Object.entries(item);
 
@@ -56,4 +56,4 @@ const SignupFormSelectInput = (props: SignupFormSelectInputProps) => {
   );
 };
 
-export default SignupFormSelectInput;
+export default SignupFormSelect;

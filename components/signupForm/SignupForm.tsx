@@ -6,21 +6,24 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MoveRightIcon } from 'lucide-react';
 
+import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
-import SignupFormInput from '../common/input/SignupFormInput';
-import SignupFormSelectInput from '../common/input/SignupFormSelectInput';
+import SignupFormInput from '../inputs/signupFormInput/SignupFormInput';
+import SignupFormSelectInput from '../inputs/signupFormSelect/SignupFormSelect';
 import { Button } from '../ui/button';
 import { Form } from '../ui/form';
 import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
+export type SignupFormRegisterInput = z.infer<typeof signupFormSchema>;
+
 const SignupForm = () => {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
 
-  const signupForm = useForm<z.infer<typeof signupFormSchema>>({
+  const signupForm = useForm<SignupFormRegisterInput>({
     resolver: zodResolver(signupFormSchema),
     mode: 'onChange',
     defaultValues: {
@@ -33,11 +36,11 @@ const SignupForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof signupFormSchema>) => {
+  const onSubmit = (data: SignupFormRegisterInput) => {
     alert(JSON.stringify(data, null, 2));
   };
 
-  const onClickSignup = () => {
+  const onClickSignupBtn = () => {
     const password = signupForm.getValues('password');
     const confirmPassword = signupForm.getValues('confirmPassword');
     if (password !== confirmPassword) {
@@ -49,11 +52,7 @@ const SignupForm = () => {
     }
   };
 
-  const onClickNextStep = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    e.preventDefault();
-
+  const onClickNextStep = () => {
     signupForm.trigger(['username', 'email', 'phone', 'role']);
 
     const username = signupForm.getFieldState('username');
@@ -166,14 +165,14 @@ const SignupForm = () => {
             <div className="flex gap-2">
               <Button
                 type="submit"
-                className={step === 1 ? 'hidden' : ''}
-                onClick={onClickSignup}
+                className={cn({ hidden: step === 1 })}
+                onClick={onClickSignupBtn}
               >
                 계정 등록하기
               </Button>
               <Button
                 type="button"
-                className={step === 1 ? '' : 'hidden'}
+                className={cn({ hidden: step === 2 })} // className={step === 1 ? ' : hidden}
                 onClick={onClickNextStep}
               >
                 다음 단계로
@@ -182,7 +181,7 @@ const SignupForm = () => {
               <Button
                 type="button"
                 variant="ghost"
-                className={step === 1 ? 'hidden' : ''}
+                className={cn({ hidden: step === 1 })}
                 onClick={onClickPrevStep}
               >
                 이전 단계로
