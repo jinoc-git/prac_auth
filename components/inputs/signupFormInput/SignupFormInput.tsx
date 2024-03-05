@@ -12,12 +12,11 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import type { signupFormSchema } from '@/schema/signupFormSchema';
-import type { z } from 'zod';
+import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
 
 export interface SignupFormInputProps {
-  control: Control<z.infer<typeof signupFormSchema>>;
-  name: keyof z.infer<typeof signupFormSchema>;
+  control: Control<SignupFormRegisterInput>;
+  name: keyof SignupFormRegisterInput;
   label: string;
   placeholder: string;
   type?: React.HTMLInputTypeAttribute;
