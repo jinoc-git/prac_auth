@@ -8,8 +8,8 @@ import { MoveRightIcon } from 'lucide-react';
 
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
-import SignupFormInput from './input/SignupFormInput';
-import SignupFormSelectInput from './input/SignupFormSelectInput';
+import SignupFormInput from '../inputs/signupFormInput/SignupFormInput';
+import SignupFormSelectInput from '../inputs/signupFormSelect/SignupFormSelect';
 import { Button } from '../ui/button';
 import { Form } from '../ui/form';
 import { useToast } from '../ui/use-toast';
