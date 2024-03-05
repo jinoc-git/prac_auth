@@ -16,11 +16,13 @@ import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
+export type SignupFormRegisterInput = z.infer<typeof signupFormSchema>;
+
 const SignupForm = () => {
   const [step, setStep] = useState(1);
   const { toast } = useToast();
 
-  const signupForm = useForm<z.infer<typeof signupFormSchema>>({
+  const signupForm = useForm<SignupFormRegisterInput>({
     resolver: zodResolver(signupFormSchema),
     mode: 'onChange',
     defaultValues: {
@@ -33,7 +35,7 @@ const SignupForm = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof signupFormSchema>) => {
+  const onSubmit = (data: SignupFormRegisterInput) => {
     alert(JSON.stringify(data, null, 2));
   };
 
