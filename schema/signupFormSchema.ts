@@ -32,7 +32,12 @@ export const signupFormSchema = z
         '비밀번호는 최소 6자리 이상, 영문, 숫자, 특수문자를 포함해야 합니다.',
       ),
   })
-  .refine(({ password, confirmPassword }) => password === confirmPassword, {
-    message: '비밀번호가 일치하지 않습니다.',
-    path: ['confirmPassword'],
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '비밀번호가 일치하지 않습니다.',
+        path: ['confirmPassword'],
+      });
+    }
   });
