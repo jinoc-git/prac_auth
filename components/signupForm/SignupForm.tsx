@@ -97,7 +97,7 @@ const SignupForm = () => {
   };
 
   return (
-    <section className="translate-center w-[320px] md:w-[380px]">
+    <section className="translate-center w-[380px]">
       <Card>
         <CardHeader>
           <CardTitle>계정을 생성합니다</CardTitle>

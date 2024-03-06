@@ -8,7 +8,7 @@ import {
 } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 
-import { navigationMenuTriggerStyle } from '../ui/navigation-menu';
+import { navigationMenuTriggerStyle } from '../../ui/navigation-menu';
 
 interface NavLinkItemProps {
   href: string;
@@ -17,6 +17,7 @@ interface NavLinkItemProps {
 
 const NavLinkItem = (props: NavLinkItemProps) => {
   const { href, value } = props;
+
   return (
     <NavigationMenuItem>
       <Link href={href} legacyBehavior passHref>
