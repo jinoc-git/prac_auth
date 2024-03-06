@@ -12,6 +12,13 @@ import { signupFormSchema } from '@/schema/signupFormSchema';
 import SignupFormInput from '../inputs/signupFormInput/SignupFormInput';
 import SignupFormSelectInput from '../inputs/signupFormSelect/SignupFormSelect';
 import { Button } from '../ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '../ui/card';
 import { Form } from '../ui/form';
 import { useToast } from '../ui/use-toast';
 
@@ -36,7 +43,7 @@ const SignupForm = () => {
     },
   });
 
-  const onSubmit = (data: SignupFormRegisterInput) => {
+  const onSubmit = async (data: SignupFormRegisterInput) => {
     alert(JSON.stringify(data, null, 2));
   };
 
@@ -90,106 +97,104 @@ const SignupForm = () => {
   };
 
   return (
-    <section className="translate-center w-[320px] md:w-[380px] rounded-lg border bg-card text-card-foreground shadow-sm">
-      <Form {...signupForm}>
-        <div className="flex flex-col space-y-1.5 p-6">
-          <h3 className="text-xl md:text-2xl font-semibold leading-none tracking-tight">
-            계정을 생성합니다
-          </h3>
-          <p className="text-sm text-muted-foreground">
-            필수 정보를 입력해 주세요.
-          </p>
-        </div>
-        <div className="p-6 pt-0">
-          <form
-            onSubmit={signupForm.handleSubmit(onSubmit)}
-            className="relative space-y-3 overflow-x-hidden"
-          >
-            <div
-              className="space-y-3 transition-transform duration-300 "
-              style={
-                step === 1
-                  ? { transform: 'translateX(0) translateZ(0)' }
-                  : { transform: 'translateX(-100%) translateZ(0)' }
-              }
+    <section className="translate-center w-[320px] md:w-[380px]">
+      <Card>
+        <CardHeader>
+          <CardTitle>계정을 생성합니다</CardTitle>
+          <CardDescription>필수 정보를 입력해 주세요.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...signupForm}>
+            <form
+              onSubmit={signupForm.handleSubmit(onSubmit)}
+              className="relative space-y-3 overflow-x-hidden"
             >
-              <SignupFormInput
-                control={signupForm.control}
-                name="username"
-                label="이름"
-                placeholder="홍길동"
-              />
-              <SignupFormInput
-                control={signupForm.control}
-                name="email"
-                label="이메일"
-                placeholder="example@example.com"
-              />
-              <SignupFormInput
-                control={signupForm.control}
-                name="phone"
-                label="연락처"
-                placeholder="010-1234-5678"
-              />
-              <SignupFormSelectInput
-                control={signupForm.control}
-                name="role"
-                label="역할"
-                placeholder="역할을 선택해 주세요."
-                item={roleItemList}
-              />
-            </div>
-            <div
-              className="space-y-3 absolute top-0 left-0 right-0 transition-transform duration-300"
-              style={
-                step === 1
-                  ? { transform: 'translateX(100%) translateZ(0)' }
-                  : { transform: 'translateX(0) translateZ(0)' }
-              }
-            >
-              <SignupFormInput
-                control={signupForm.control}
-                name="password"
-                label="비밀번호"
-                placeholder="비밀번호를 입력해 주세요."
-                type="password"
-              />
-              <SignupFormInput
-                control={signupForm.control}
-                name="confirmPassword"
-                label="비밀번호 확인"
-                placeholder="비밀번호를 다시 입력해 주세요."
-                type="password"
-              />
-            </div>
-            <div className="flex justify-between md:justify-normal md:gap-2">
-              <Button
-                type="submit"
-                className={cn({ hidden: step === 1 })}
-                onClick={onClickSignupBtn}
+              <div
+                className="space-y-3 transition-transform duration-300 "
+                style={
+                  step === 1
+                    ? { transform: 'translateX(0) translateZ(0)' }
+                    : { transform: 'translateX(-100%) translateZ(0)' }
+                }
               >
-                계정 등록하기
-              </Button>
-              <Button
-                type="button"
-                className={cn({ hidden: step === 2 })} // className={step === 1 ? ' : hidden}
-                onClick={onClickNextStep}
+                <SignupFormInput
+                  control={signupForm.control}
+                  name="username"
+                  label="이름"
+                  placeholder="홍길동"
+                />
+                <SignupFormInput
+                  control={signupForm.control}
+                  name="email"
+                  label="이메일"
+                  placeholder="example@example.com"
+                />
+                <SignupFormInput
+                  control={signupForm.control}
+                  name="phone"
+                  label="연락처"
+                  placeholder="010-1234-5678"
+                />
+                <SignupFormSelectInput
+                  control={signupForm.control}
+                  name="role"
+                  label="역할"
+                  placeholder="역할을 선택해 주세요."
+                  item={roleItemList}
+                />
+              </div>
+              <div
+                className="space-y-3 absolute top-0 left-0 right-0 transition-transform duration-300"
+                style={
+                  step === 1
+                    ? { transform: 'translateX(100%) translateZ(0)' }
+                    : { transform: 'translateX(0) translateZ(0)' }
+                }
               >
-                다음 단계로
-                <MoveRightIcon className="w-4 h-4 ml-2" />
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                className={cn({ hidden: step === 1 })}
-                onClick={onClickPrevStep}
-              >
-                이전 단계로
-              </Button>
-            </div>
-          </form>
-        </div>
-      </Form>
+                <SignupFormInput
+                  control={signupForm.control}
+                  name="password"
+                  label="비밀번호"
+                  placeholder="비밀번호를 입력해 주세요."
+                  type="password"
+                />
+                <SignupFormInput
+                  control={signupForm.control}
+                  name="confirmPassword"
+                  label="비밀번호 확인"
+                  placeholder="비밀번호를 다시 입력해 주세요."
+                  type="password"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  type="submit"
+                  className={cn({ hidden: step === 1 })}
+                  onClick={onClickSignupBtn}
+                >
+                  계정 등록하기
+                </Button>
+                <Button
+                  type="button"
+                  className={cn({ hidden: step === 2 })}
+                  onClick={onClickNextStep}
+                >
+                  다음 단계로
+                  <MoveRightIcon className="w-4 h-4 ml-2" />
+                </Button>
+                <Button
+                  type="button"
+                  variant="ghost"
+                  className={cn({ hidden: step === 1 })}
+                  onClick={onClickPrevStep}
+                >
+                  이전 단계로
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </section>
   );
 };
