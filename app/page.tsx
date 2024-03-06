@@ -1,11 +1,9 @@
-import SwitchThemeButton from '@/components/buttons/switchTheme/SwitchThemeButton';
-import SignupForm from '@/components/signupForm/SignupForm';
+import Introduce from '@/components/home-content/introduce/Introduce';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <SwitchThemeButton />
-      <SignupForm />
+    <main className="flex-center min-h-[calc(100vh-88px)]">
+      <Introduce></Introduce>
     </main>
   );
 }

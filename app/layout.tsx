@@ -1,11 +1,13 @@
 import { Inter } from 'next/font/google';
 
+import SwitchThemeButton from '@/components/buttons/switchTheme/SwitchThemeButton';
+import Header from '@/components/header/Header';
 import NextThemesProvider from '@/components/providers/NextThemesProvider';
 import { Toaster } from '@/components/ui/toaster';
 
 import type { Metadata } from 'next';
 
-import '@/styles/globals.css';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,9 +30,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
+          <Toaster />
+          <SwitchThemeButton />
         </NextThemesProvider>
-        <Toaster />
       </body>
     </html>
   );
