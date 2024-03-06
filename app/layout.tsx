@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 
+import SwitchThemeButton from '@/components/buttons/switchTheme/SwitchThemeButton';
 import NextThemesProvider from '@/components/providers/NextThemesProvider';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -29,8 +30,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
+          <SwitchThemeButton />
         </NextThemesProvider>
-        <Toaster />
       </body>
     </html>
   );
