@@ -90,10 +90,10 @@ const SignupForm = () => {
   };
 
   return (
-    <section className=" absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-[380px] rounded-lg border bg-card text-card-foreground shadow-sm">
+    <section className="translate-center w-[320px] md:w-[380px] rounded-lg border bg-card text-card-foreground shadow-sm">
       <Form {...signupForm}>
         <div className="flex flex-col space-y-1.5 p-6">
-          <h3 className="text-2xl font-semibold leading-none tracking-tight">
+          <h3 className="text-xl md:text-2xl font-semibold leading-none tracking-tight">
             계정을 생성합니다
           </h3>
           <p className="text-sm text-muted-foreground">
@@ -162,7 +162,7 @@ const SignupForm = () => {
                 type="password"
               />
             </div>
-            <div className="flex gap-2">
+            <div className="flex justify-between md:justify-normal md:gap-2">
               <Button
                 type="submit"
                 className={cn({ hidden: step === 1 })}
