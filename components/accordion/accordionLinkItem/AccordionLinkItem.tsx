@@ -23,7 +23,7 @@ const AccordionLinkItem = (props: AccordionLinkItemProps) => {
     <AccordionItem value={value}>
       <AccordionTrigger>{title}</AccordionTrigger>
       <AccordionContent>
-        <Link target="_blank" href={href}>
+        <Link target="_blank" href={href} className=" hover:text-gray-500">
           {desc}
         </Link>
       </AccordionContent>

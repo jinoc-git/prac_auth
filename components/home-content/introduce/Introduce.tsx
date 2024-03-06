@@ -12,7 +12,7 @@ const Introduce = () => {
       <AccordionNormalItem
         value="item-1"
         title="Project"
-        desc="Simple Auth Pages"
+        desc="Simple Auth Page"
       />
       <AccordionLinkItem
         value="item-2"
@@ -20,8 +20,11 @@ const Introduce = () => {
         desc="https://github.com/jinoc-git/simple-auth-page"
         href="https://github.com/jinoc-git/simple-auth-page"
       />
-
-      <AccordionNormalItem value="item-3" title="By" desc="jinoc" />
+      <AccordionNormalItem
+        value="item-3"
+        title="Tech Stacks"
+        desc="TypeScript, Next.js, React, shadcn/ui"
+      />
     </Accordion>
   );
 };
