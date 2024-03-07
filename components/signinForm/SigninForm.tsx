@@ -67,7 +67,7 @@ const SigninForm = () => {
                 placeholder="비밀번호을 입력해 주세요."
                 type="password"
               />
-              <div className="flex gap-2">
+              <div className="flex gap-3">
                 <Button type="submit">로그인 하기</Button>
                 <Button
                   variant={'outline'}
