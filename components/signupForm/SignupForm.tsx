@@ -10,7 +10,7 @@ import { signup } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
-import SignupFormInput from '../inputs/signupFormInput/SignupFormInput';
+import FormNormalInput from '../inputs/formNormalInput/FormNormallnput';
 import SignupFormSelectInput from '../inputs/signupFormSelect/SignupFormSelect';
 import { Button } from '../ui/button';
 import {
@@ -102,7 +102,7 @@ const SignupForm = () => {
     <section className="translate-center w-[380px]">
       <Card>
         <CardHeader>
-          <CardTitle>계정을 생성합니다</CardTitle>
+          <CardTitle>회원가입</CardTitle>
           <CardDescription>필수 정보를 입력해 주세요.</CardDescription>
         </CardHeader>
         <CardContent>
@@ -119,19 +119,19 @@ const SignupForm = () => {
                     : { transform: 'translateX(-100%) translateZ(0)' }
                 }
               >
-                <SignupFormInput
+                <FormNormalInput
                   control={signupForm.control}
                   name="username"
                   label="이름"
                   placeholder="홍길동"
                 />
-                <SignupFormInput
+                <FormNormalInput
                   control={signupForm.control}
                   name="email"
                   label="이메일"
                   placeholder="example@example.com"
                 />
-                <SignupFormInput
+                <FormNormalInput
                   control={signupForm.control}
                   name="phone"
                   label="연락처"
@@ -153,14 +153,14 @@ const SignupForm = () => {
                     : { transform: 'translateX(0) translateZ(0)' }
                 }
               >
-                <SignupFormInput
+                <FormNormalInput
                   control={signupForm.control}
                   name="password"
                   label="비밀번호"
                   placeholder="비밀번호를 입력해 주세요."
                   type="password"
                 />
-                <SignupFormInput
+                <FormNormalInput
                   control={signupForm.control}
                   name="confirmPassword"
                   label="비밀번호 확인"

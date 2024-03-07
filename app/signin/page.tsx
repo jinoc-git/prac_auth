@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default function Signin() {
+import SigninForm from '@/components/signinForm/SigninForm';
+
+export default async function Signin() {
   return (
     <div>
-      <div>page</div>
+      <SigninForm />
     </div>
   );
 }

@@ -17,9 +17,9 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-import type { SignupFormInputProps } from '../signupFormInput/SignupFormInput';
+import type { FormNormalInputProps } from '../formNormalInput/FormNormallnput';
 
-interface SignupFormSelectProps extends SignupFormInputProps {
+interface SignupFormSelectProps extends FormNormalInputProps {
   item: Record<string, string>;
 }
 
