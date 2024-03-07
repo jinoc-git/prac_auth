@@ -102,7 +102,7 @@ const SignupForm = () => {
     <section className="translate-center w-[380px]">
       <Card>
         <CardHeader>
-          <CardTitle>계정을 생성합니다</CardTitle>
+          <CardTitle>회원가입</CardTitle>
           <CardDescription>필수 정보를 입력해 주세요.</CardDescription>
         </CardHeader>
         <CardContent>
