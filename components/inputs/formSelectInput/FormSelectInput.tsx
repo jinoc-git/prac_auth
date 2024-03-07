@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
+
 import {
   FormControl,
   FormField,
@@ -19,11 +21,11 @@ import {
 
 import type { FormNormalInputProps } from '../formNormalInput/FormNormallnput';
 
-interface SignupFormSelectProps extends FormNormalInputProps {
+interface FormSelectInputProps extends FormNormalInputProps {
   item: Record<string, string>;
 }
 
-const SignupFormSelect = (props: SignupFormSelectProps) => {
+const FormSelectInput = (props: FormSelectInputProps) => {
   const { control, name, label, placeholder, item } = props;
   const itemList = Object.entries(item);
 
@@ -41,9 +43,8 @@ const SignupFormSelect = (props: SignupFormSelectProps) => {
               </SelectTrigger>
             </FormControl>
             <SelectContent>
-              {/* key 수정 필요 */}
-              {itemList.map(([value, name], idx) => (
-                <SelectItem key={idx} value={value}>
+              {itemList.map(([value, name]) => (
+                <SelectItem key={uuid()} value={value}>
                   {name}
                 </SelectItem>
               ))}
@@ -56,4 +57,4 @@ const SignupFormSelect = (props: SignupFormSelectProps) => {
   );
 };
 
-export default SignupFormSelect;
+export default FormSelectInput;
