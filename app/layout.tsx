@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 import type { Metadata } from 'next';
 
-import './globals.css';
+import '@/style/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
