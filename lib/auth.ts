@@ -62,4 +62,6 @@ export const signinWithGoogle = async () => {
       },
     },
   });
+
+  if (error !== null) throw new Error('google is error');
 };
