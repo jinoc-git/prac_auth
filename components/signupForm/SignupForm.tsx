@@ -48,6 +48,7 @@ const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormRegisterInput) => {
     await signup(data);
+    router.push('/');
     router.refresh();
   };
 

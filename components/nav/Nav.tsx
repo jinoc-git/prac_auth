@@ -19,10 +19,10 @@ interface NavProps {
 const Nav = ({ session }: NavProps) => {
   const router = useRouter();
   const isLogin = session !== null;
-  console.log(session);
 
   const onClickLogout = async () => {
     await signout();
+    router.push('/signin');
     router.refresh();
   };
 

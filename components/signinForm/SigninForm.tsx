@@ -33,6 +33,7 @@ const SigninForm = () => {
 
   const onSubmit = async (data: SigninFormRegisterInput) => {
     await signin(data);
+    router.push('/');
     router.refresh();
   };
 
