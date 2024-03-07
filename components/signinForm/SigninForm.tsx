@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { signin } from '@/lib/auth';
 import { signinFormSchema } from '@/schema/signinFormSchema';
 
 import FormNormalInput from '../inputs/formNormalInput/FormNormallnput';
@@ -18,13 +19,19 @@ import {
 } from '../ui/card';
 import { Form } from '../ui/form';
 
+import type { z } from 'zod';
+
+export type SigninFormRegisterInput = z.infer<typeof signinFormSchema>;
+
 const SigninForm = () => {
-  const signinForm = useForm({
+  const signinForm = useForm<SigninFormRegisterInput>({
     resolver: zodResolver(signinFormSchema),
     defaultValues: { email: '', password: '' },
   });
 
-  const onSubmit = async () => {};
+  const onSubmit = async (data: SigninFormRegisterInput) => {
+    await signin(data);
+  };
 
   return (
     <section className="translate-center w-[380px]">
