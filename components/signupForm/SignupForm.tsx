@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MoveRightIcon } from 'lucide-react';
 
+import { signup } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
@@ -44,7 +45,8 @@ const SignupForm = () => {
   });
 
   const onSubmit = async (data: SignupFormRegisterInput) => {
-    alert(JSON.stringify(data, null, 2));
+    await signup(data);
+    console.log('회원가입');
   };
 
   const onClickSignupBtn = () => {

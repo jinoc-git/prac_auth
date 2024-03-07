@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-import type { Database } from './database.types';
+import type { Database, InsertUserType } from './database.types';
 import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
 
 const supabase = createClient<Database>(
@@ -25,6 +25,8 @@ export const signup = async (formData: SignupFormRegisterInput) => {
     },
   });
 
+  if (error !== null) throw new Error('signup user is error');
+
   const user = {
     id: data.user?.id,
     username,
@@ -32,6 +34,11 @@ export const signup = async (formData: SignupFormRegisterInput) => {
     phone,
     role,
   };
+
+  await insertUser(user);
 };
 
-const insertUser = async () => {};
+const insertUser = async (user: InsertUserType) => {
+  const { error } = await supabase.from('users').insert(user);
+  if (error !== null) throw new Error('insert user is error');
+};
