@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MoveRightIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import { signup } from '@/lib/auth';
 import { cn } from '@/lib/utils';
@@ -28,6 +29,7 @@ import type { z } from 'zod';
 export type SignupFormRegisterInput = z.infer<typeof signupFormSchema>;
 
 const SignupForm = () => {
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const { toast } = useToast();
 
@@ -46,7 +48,8 @@ const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormRegisterInput) => {
     await signup(data);
-    console.log('회원가입');
+    router.push('/');
+    router.refresh();
   };
 
   const onClickSignupBtn = () => {

@@ -2,23 +2,38 @@
 
 import React from 'react';
 
+import { useRouter } from 'next/navigation';
+
+import { signout } from '@/lib/auth';
+
 import NavButtonItem from './navButtonItem/NavButtonItem';
 import NavLinkItem from './navLinkItem/NavLinkItem';
 import { NavigationMenu, NavigationMenuList } from '../ui/navigation-menu';
 
-const Nav = () => {
-  const isLogin = false;
+import type { Session } from '@supabase/auth-helpers-nextjs';
 
-  const onClickLogout = () => {
-    console.log('logout');
+interface NavProps {
+  session: Session | null;
+}
+
+const Nav = ({ session }: NavProps) => {
+  const router = useRouter();
+  const isLogin = session !== null;
+
+  const onClickLogout = async () => {
+    await signout();
+    router.push('/signin');
+    router.refresh();
   };
 
   return (
     <NavigationMenu>
       <NavigationMenuList className=" w-[380px] justify-between">
-        <NavLinkItem href="/" value="홈" />
         {isLogin ? (
-          <NavButtonItem value="로그아웃" onClick={onClickLogout} />
+          <>
+            <NavLinkItem href="/" value="홈" />
+            <NavButtonItem value="로그아웃" onClick={onClickLogout} />
+          </>
         ) : (
           <>
             <NavLinkItem href="/signin" value="로그인" />

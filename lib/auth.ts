@@ -1,13 +1,10 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 import type { Database, InsertUserType } from './database.types';
 import type { SigninFormRegisterInput } from '@/components/signinForm/SigninForm';
 import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
 
-const supabase = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
-);
+const supabase = createClientComponentClient<Database>();
 
 export { supabase };
 
@@ -18,6 +15,7 @@ export const signup = async (formData: SignupFormRegisterInput) => {
     email,
     password,
     options: {
+      emailRedirectTo: `${location.origin}/auth/callback`,
       data: {
         username,
         phone,
