@@ -4,8 +4,8 @@ import SigninForm from '@/components/signinForm/SigninForm';
 
 export default async function Signin() {
   return (
-    <div>
+    <main className="min-h-[calc(100vh-88px)]">
       <SigninForm />
-    </div>
+    </main>
   );
 }

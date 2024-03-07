@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
-import { signin } from '@/lib/auth';
+import { signin, signinWithGoogle } from '@/lib/auth';
 import { signinFormSchema } from '@/schema/signinFormSchema';
 
 import FormNormalInput from '../inputs/formNormalInput/FormNormallnput';
@@ -37,6 +37,10 @@ const SigninForm = () => {
     router.refresh();
   };
 
+  const onClickSigninWithGoogleBtn = async () => {
+    await signinWithGoogle();
+  };
+
   return (
     <section className="translate-center w-[380px]">
       <Card>
@@ -63,8 +67,16 @@ const SigninForm = () => {
                 placeholder="비밀번호을 입력해 주세요."
                 type="password"
               />
-
-              <Button type="submit">로그인 하기</Button>
+              <div className="flex gap-3">
+                <Button type="submit">로그인 하기</Button>
+                <Button
+                  variant={'outline'}
+                  type="button"
+                  onClick={onClickSigninWithGoogleBtn}
+                >
+                  구글로 로그인
+                </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
