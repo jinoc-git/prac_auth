@@ -12,7 +12,7 @@ import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
 import FormNormalInput from '../inputs/formNormalInput/FormNormallnput';
-import SignupFormSelectInput from '../inputs/signupFormSelect/SignupFormSelect';
+import FormSelectInput from '../inputs/formSelectInput/FormSelectInput';
 import { Button } from '../ui/button';
 import {
   Card,
@@ -140,7 +140,7 @@ const SignupForm = () => {
                   label="연락처"
                   placeholder="010-1234-5678"
                 />
-                <SignupFormSelectInput
+                <FormSelectInput
                   control={signupForm.control}
                   name="role"
                   label="역할"
