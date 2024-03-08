@@ -11,6 +11,14 @@ https://simple-auth-page.vercel.app/
 
 shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 간단한 로그인 회원가입 페이지 만들기
 
+## 프로젝트 route 구조
+
+- / : 로그인 시 보이는 메인 페이지
+- /signin : 로그인 페이지
+- /signup : 회원가입 페이지
+- /admin : 관리자 페이지
+- /auth/callback : 소셜 로그인의 callback 페이지
+
 ## 구현 기능
 
 - 라이트모드, 다크모드, 시스템모드로 테마 변경 기능
@@ -21,6 +29,7 @@ shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 간단한 로그인 �
 - Next.js의 server action과 middleware를 사용하여 로그인 유지 기능 구현
 - server 컴포넌트에서 로그인 여부를 확인하여 redirect 기능 구현
 - 관리자로 로그인 시 사이트에 접속하는 모든 유저의 기본 테마를 변경하는 기능 구현
+- api 함수 에러 시 toast 모달로 안내하는 기능 구현
 
 ## 기술 스택
 

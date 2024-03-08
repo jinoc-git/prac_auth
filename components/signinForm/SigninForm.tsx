@@ -19,6 +19,7 @@ import {
   CardTitle,
 } from '../ui/card';
 import { Form } from '../ui/form';
+import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
@@ -26,15 +27,27 @@ export type SigninFormRegisterInput = z.infer<typeof signinFormSchema>;
 
 const SigninForm = () => {
   const router = useRouter();
+  const { toast } = useToast();
+
   const signinForm = useForm<SigninFormRegisterInput>({
     resolver: zodResolver(signinFormSchema),
     defaultValues: { email: '', password: '' },
   });
 
   const onSubmit = async (data: SigninFormRegisterInput) => {
-    await signin(data);
-    router.push('/');
-    router.refresh();
+    try {
+      await signin(data);
+      router.push('/');
+      router.refresh();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({
+          variant: 'destructive',
+          title: error.message,
+          duration: 2000,
+        });
+      }
+    }
   };
 
   const onClickSigninWithGoogleBtn = async () => {
