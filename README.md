@@ -3,6 +3,10 @@
 | Front-End | [노진철](https://github.com/jinoc-git) |
 | --------- | -------------------------------------- |
 
+## 배포 주소
+
+https://simple-auth-page.vercel.app/
+
 ## 프로젝트 소개
 
 shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 간단한 로그인 회원가입 페이지 만들기
