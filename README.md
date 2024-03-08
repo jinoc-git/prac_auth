@@ -11,6 +11,14 @@ https://simple-auth-page.vercel.app/
 
 shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 간단한 로그인 회원가입 페이지 만들기
 
+## 프로젝트 route 구조
+
+- / : 로그인 시 보이는 메인 페이지
+- /signin : 로그인 페이지
+- /signup : 회원가입 페이지
+- /admin : 관리자 페이지
+- /auth/callback : 소셜 로그인의 callback 페이지
+
 ## 구현 기능
 
 - 라이트모드, 다크모드, 시스템모드로 테마 변경 기능
