@@ -19,6 +19,15 @@ export default async function Admin() {
   const isAdmin = session?.user.user_metadata.role === '관리자';
   if (!isAdmin) redirect('/');
 
+  const { data } = await supabase
+    .from('theme')
+    .select('theme')
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .single();
+
+  const defaultTheme = data === null ? 'system' : data.theme;
+
   return (
     <main className="min-h-[calc(100vh-88px)] flex-center">
       <ChangeTheme adminId={session.user.id} />

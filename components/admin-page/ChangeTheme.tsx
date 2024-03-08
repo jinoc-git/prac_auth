@@ -4,6 +4,8 @@ import React from 'react';
 
 import { changeRawTheme } from '@/lib/admin';
 
+import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
+
 import type { Themes } from '@/lib/admin';
 
 interface ChangeThemeProps {
@@ -16,11 +18,17 @@ const ChangeTheme = ({ adminId }: ChangeThemeProps) => {
   };
 
   return (
-    <div className="flex flex-col">
-      <button onClick={() => onClickTheme('light')}>light</button>
-      <button onClick={() => onClickTheme('dark')}>dark</button>
-      <button onClick={() => onClickTheme('system')}>system</button>
-    </div>
+    <ToggleGroup variant={'outline'} type="single">
+      <ToggleGroupItem value="bold" aria-label="Toggle light">
+        <p onClick={() => onClickTheme('light')}>light</p>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="dark" aria-label="Toggle dark">
+        <p onClick={() => onClickTheme('dark')}>dark</p>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="system" aria-label="Toggle system">
+        <p onClick={() => onClickTheme('system')}>system</p>
+      </ToggleGroupItem>
+    </ToggleGroup>
   );
 };
 
