@@ -3,7 +3,7 @@ import React from 'react';
 import { redirect } from 'next/navigation';
 
 import ChangeTheme from '@/components/admin-page/ChangeTheme';
-import { getAuthSession, getDefaultTheme } from '@/lib/serverAction';
+import { getAuthSession, getDefaultTheme } from '@/lib/serverActions';
 
 export default async function Admin() {
   const session = await getAuthSession();

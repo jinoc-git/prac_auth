@@ -4,7 +4,7 @@ import SwitchThemeButton from '@/components/buttons/switchTheme/SwitchThemeButto
 import Header from '@/components/header/Header';
 import NextThemesProvider from '@/components/providers/NextThemesProvider';
 import { Toaster } from '@/components/ui/toaster';
-import { getDefaultTheme } from '@/lib/serverAction';
+import { getDefaultTheme } from '@/lib/serverActions';
 
 import type { Metadata } from 'next';
 

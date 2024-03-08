@@ -4,14 +4,14 @@ import type { Database, InsertUserType } from './database.types';
 import type { SigninFormRegisterInput } from '@/components/signinForm/SigninForm';
 import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
 
-const supabase = createClientComponentClient<Database>();
+const supabaseClientClient = createClientComponentClient<Database>();
 
-export { supabase };
+export { supabaseClientClient };
 
 export const signup = async (formData: SignupFormRegisterInput) => {
   const { username, email, phone, role, password } = formData;
 
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await supabaseClientClient.auth.signUp({
     email,
     password,
     options: {
@@ -38,21 +38,22 @@ export const signup = async (formData: SignupFormRegisterInput) => {
 };
 
 const insertUser = async (user: InsertUserType) => {
-  const { error } = await supabase.from('users').insert(user);
+  const { error } = await supabaseClientClient.from('users').insert(user);
   if (error !== null) throw new Error('insert user is error');
 };
 
 export const signin = async (formData: SigninFormRegisterInput) => {
-  const { error } = await supabase.auth.signInWithPassword(formData);
+  const { error } =
+    await supabaseClientClient.auth.signInWithPassword(formData);
   if (error !== null) throw new Error('signin is error');
 };
 
 export const signout = async () => {
-  await supabase.auth.signOut();
+  await supabaseClientClient.auth.signOut();
 };
 
 export const signinWithGoogle = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
+  const { data, error } = await supabaseClientClient.auth.signInWithOAuth({
     provider: 'google',
     options: {
       redirectTo: `${location.origin}/auth/callback`,

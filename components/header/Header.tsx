@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getAuthSession } from '@/lib/serverAction';
+import { getAuthSession } from '@/lib/serverActions';
 
 import Nav from '../nav/Nav';
 
