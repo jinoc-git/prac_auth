@@ -24,7 +24,7 @@ export const signup = async (formData: SignupFormRegisterInput) => {
     },
   });
 
-  if (error !== null) throw new Error('signup user is error');
+  if (error !== null) throw new Error('signup is error try again');
 
   const user = {
     id: data.user?.id,
