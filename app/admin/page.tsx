@@ -4,6 +4,8 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+import ChangeTheme from '@/components/admin-page/ChangeTheme';
+
 import type { Database } from '@/lib/database.types';
 
 export default async function Admin() {
@@ -18,8 +20,8 @@ export default async function Admin() {
   if (!isAdmin) redirect('/');
 
   return (
-    <main className="min-h-[calc(100vh-88px)]">
-      <div>page</div>
+    <main className="min-h-[calc(100vh-88px)] flex-center">
+      <ChangeTheme adminId={session.user.id} />
     </main>
   );
 }

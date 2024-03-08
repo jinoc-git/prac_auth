@@ -11,16 +11,19 @@ export type Database = {
     Tables: {
       theme: {
         Row: {
+          admin_id: string;
           created_at: string;
           id: string;
           theme: string;
         };
         Insert: {
+          admin_id?: string;
           created_at?: string;
           id?: string;
           theme: string;
         };
         Update: {
+          admin_id?: string;
           created_at?: string;
           id?: string;
           theme?: string;

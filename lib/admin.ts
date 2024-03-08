@@ -1,6 +1,10 @@
 import { supabase } from './auth';
 
-export const changeRawTheme = async (theme: string) => {
-  const { data, error } = await supabase.from('theme').insert({ theme });
+export type Themes = 'light' | 'dark' | 'system';
+
+export const changeRawTheme = async (theme: Themes, admin_id: string) => {
+  const { data, error } = await supabase
+    .from('theme')
+    .insert({ theme, admin_id });
   console.log(data, error);
 };
