@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
@@ -13,8 +13,18 @@ import {
   DropdownMenuTrigger,
 } from '../../ui/dropdown';
 
-const SwitchThemeButton = () => {
+interface SwitchThemeButtonProps {
+  defaultTheme?: string;
+}
+
+const SwitchThemeButton = ({ defaultTheme }: SwitchThemeButtonProps) => {
   const { setTheme } = useTheme();
+
+  useEffect(() => {
+    if (defaultTheme) {
+      setTheme(defaultTheme);
+    }
+  }, [defaultTheme]);
 
   return (
     <DropdownMenu>
