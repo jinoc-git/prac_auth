@@ -1,22 +1,23 @@
+import React from 'react';
+
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
-import Introduce from '@/components/home-content/introduce/Introduce';
+import Nav from '../nav/Nav';
 
 import type { Database } from '@/lib/database.types';
 
-export default async function Home() {
+const Header = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (!session) redirect('/signin');
-
   return (
-    <main className="flex-center min-h-[calc(100vh-88px)]">
-      <Introduce />
-    </main>
+    <header className=" flex justify-center w-screen h-[88px]">
+      <Nav session={session} />
+    </header>
   );
-}
+};
+
+export default Header;

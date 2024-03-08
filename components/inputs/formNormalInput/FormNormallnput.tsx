@@ -12,17 +12,15 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
-import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
-
-export interface SignupFormInputProps {
-  control: Control<SignupFormRegisterInput>;
-  name: keyof SignupFormRegisterInput;
+export interface FormNormalInputProps {
+  control: Control<any>;
+  name: string;
   label: string;
   placeholder: string;
   type?: React.HTMLInputTypeAttribute;
 }
 
-const SignupFormInput = (props: SignupFormInputProps) => {
+const FormNormalInput = (props: FormNormalInputProps) => {
   const { control, name, label, placeholder, type } = props;
 
   return (
@@ -42,4 +40,4 @@ const SignupFormInput = (props: SignupFormInputProps) => {
   );
 };
 
-export default SignupFormInput;
+export default FormNormalInput;
