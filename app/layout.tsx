@@ -12,8 +12,8 @@ import '@/style/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'dev camp',
-  description: '간단한 회원가입 페이지',
+  title: 'simple auth page',
+  description: '간단한 로그인 회원가입 페이지',
 };
 
 export default function RootLayout({
