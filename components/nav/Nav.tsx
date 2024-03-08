@@ -19,6 +19,7 @@ interface NavProps {
 const Nav = ({ session }: NavProps) => {
   const router = useRouter();
   const isLogin = session !== null;
+  const isAdmin = session?.user.user_metadata.role === '관리자';
 
   const onClickLogout = async () => {
     await signout();
@@ -32,6 +33,7 @@ const Nav = ({ session }: NavProps) => {
         {isLogin ? (
           <>
             <NavLinkItem href="/" value="홈" />
+            {isAdmin && <NavLinkItem href="/admin" value="관리" />}
             <NavButtonItem value="로그아웃" onClick={onClickLogout} />
           </>
         ) : (
