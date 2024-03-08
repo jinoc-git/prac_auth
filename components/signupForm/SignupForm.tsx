@@ -47,9 +47,19 @@ const SignupForm = () => {
   });
 
   const onSubmit = async (data: SignupFormRegisterInput) => {
-    await signup(data);
-    router.push('/');
-    router.refresh();
+    try {
+      await signup(data);
+      router.push('/');
+      router.refresh();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({
+          variant: 'destructive',
+          title: error.message,
+          duration: 2000,
+        });
+      }
+    }
   };
 
   const onClickSignupBtn = () => {

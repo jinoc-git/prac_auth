@@ -24,7 +24,7 @@ export const signup = async (formData: SignupFormRegisterInput) => {
     },
   });
 
-  if (error !== null) throw new Error('signup user is error');
+  if (error !== null) throw new Error(error.message);
 
   const user = {
     id: data.user?.id,
@@ -39,13 +39,13 @@ export const signup = async (formData: SignupFormRegisterInput) => {
 
 const insertUser = async (user: InsertUserType) => {
   const { error } = await supabaseClientClient.from('users').insert(user);
-  if (error !== null) throw new Error('insert user is error');
+  if (error !== null) throw new Error(error.message);
 };
 
 export const signin = async (formData: SigninFormRegisterInput) => {
   const { error } =
     await supabaseClientClient.auth.signInWithPassword(formData);
-  if (error !== null) throw new Error('signin is error');
+  if (error !== null) throw new Error(error.message);
 };
 
 export const signout = async () => {
@@ -64,5 +64,5 @@ export const signinWithGoogle = async () => {
     },
   });
 
-  if (error !== null) throw new Error('google is error');
+  if (error !== null) throw new Error(error.message);
 };
