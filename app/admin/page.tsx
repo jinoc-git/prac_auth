@@ -30,7 +30,7 @@ export default async function Admin() {
 
   return (
     <main className="min-h-[calc(100vh-88px)] flex-center">
-      <ChangeTheme adminId={session.user.id} />
+      <ChangeTheme defaultTheme={defaultTheme} adminId={session.user.id} />
     </main>
   );
 }

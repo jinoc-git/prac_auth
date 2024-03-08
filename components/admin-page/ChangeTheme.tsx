@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import { changeRawTheme } from '@/lib/admin';
 
 import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
@@ -9,17 +11,26 @@ import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
 import type { Themes } from '@/lib/admin';
 
 interface ChangeThemeProps {
+  defaultTheme: string;
   adminId: string;
 }
 
-const ChangeTheme = ({ adminId }: ChangeThemeProps) => {
+const ChangeTheme = ({ defaultTheme, adminId }: ChangeThemeProps) => {
+  const router = useRouter();
+
   const onClickTheme = async (theme: Themes) => {
     await changeRawTheme(theme, adminId);
+    router.refresh();
   };
 
   return (
-    <ToggleGroup variant={'outline'} type="single">
-      <ToggleGroupItem value="bold" aria-label="Toggle light">
+    <ToggleGroup
+      variant={'outline'}
+      type="single"
+      defaultValue={defaultTheme}
+      defaultChecked
+    >
+      <ToggleGroupItem value="light" aria-label="Toggle light">
         <p onClick={() => onClickTheme('light')}>light</p>
       </ToggleGroupItem>
       <ToggleGroupItem value="dark" aria-label="Toggle dark">
