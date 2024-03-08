@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { changeRawTheme } from '@/lib/admin';
 
 import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
+import { useToast } from '../ui/use-toast';
 
 import type { Themes } from '@/lib/admin';
 
@@ -17,10 +18,21 @@ interface ChangeThemeProps {
 
 const ChangeTheme = ({ defaultTheme, adminId }: ChangeThemeProps) => {
   const router = useRouter();
+  const { toast } = useToast();
 
   const onClickTheme = async (theme: Themes) => {
-    await changeRawTheme(theme, adminId);
-    router.refresh();
+    try {
+      await changeRawTheme(theme, adminId);
+      router.refresh();
+    } catch (error) {
+      if (error instanceof Error) {
+        toast({
+          variant: 'destructive',
+          title: error.message,
+          duration: 2000,
+        });
+      }
+    }
   };
 
   return (
