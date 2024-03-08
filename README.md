@@ -16,6 +16,7 @@ shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 간단한 로그인 �
 - Supabase의 Oauth를 사용하여 구글 로그인 구현
 - Next.js의 server action과 middleware를 사용하여 로그인 유지 기능 구현
 - server 컴포넌트에서 로그인 여부를 확인하여 redirect 기능 구현
+- 관리자로 로그인 시 사이트에 접속하는 모든 유저의 기본 테마를 변경하는 기능 구현
 
 ## 기술 스택
 
