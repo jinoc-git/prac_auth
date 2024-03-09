@@ -4,10 +4,10 @@ import React from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import useToastModal from '@/hooks/useToastModal';
 import { changeRawTheme } from '@/lib/admin';
 
 import { ToggleGroup, ToggleGroupItem } from '../ui/toggle-group';
-import { useToast } from '../ui/use-toast';
 
 import type { Themes } from '@/lib/admin';
 
@@ -18,20 +18,14 @@ interface ChangeThemeProps {
 
 const ChangeTheme = ({ defaultTheme, adminId }: ChangeThemeProps) => {
   const router = useRouter();
-  const { toast } = useToast();
+  const { toast } = useToastModal();
 
   const onClickTheme = async (theme: Themes) => {
     try {
       await changeRawTheme(theme, adminId);
       router.refresh();
     } catch (error) {
-      if (error instanceof Error) {
-        toast({
-          variant: 'destructive',
-          title: error.message,
-          duration: 2000,
-        });
-      }
+      if (error instanceof Error) toast.warning(error.message, 2000);
     }
   };
 

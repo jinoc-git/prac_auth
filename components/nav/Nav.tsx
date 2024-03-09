@@ -4,12 +4,12 @@ import React from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import useToastModal from '@/hooks/useToastModal';
 import { signout } from '@/lib/auth';
 
 import NavButtonItem from './navButtonItem/NavButtonItem';
 import NavLinkItem from './navLinkItem/NavLinkItem';
 import { NavigationMenu, NavigationMenuList } from '../ui/navigation-menu';
-import { useToast } from '../ui/use-toast';
 
 import type { Session } from '@supabase/auth-helpers-nextjs';
 
@@ -19,7 +19,7 @@ interface NavProps {
 
 const Nav = ({ session }: NavProps) => {
   const router = useRouter();
-  const { toast } = useToast();
+  const { toast } = useToastModal();
 
   const isLogin = session !== null;
   const isAdmin = session?.user.user_metadata.role === '관리자';
@@ -30,13 +30,7 @@ const Nav = ({ session }: NavProps) => {
       router.push('/signin');
       router.refresh();
     } catch (error) {
-      if (error instanceof Error) {
-        toast({
-          variant: 'destructive',
-          title: error.message,
-          duration: 2000,
-        });
-      }
+      if (error instanceof Error) toast.warning(error.message, 2000);
     }
   };
 

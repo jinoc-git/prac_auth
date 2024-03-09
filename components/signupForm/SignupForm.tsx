@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { MoveRightIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
+import useToastModal from '@/hooks/useToastModal';
 import { signup } from '@/lib/auth';
 import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
@@ -22,7 +23,6 @@ import {
   CardTitle,
 } from '../ui/card';
 import { Form } from '../ui/form';
-import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
@@ -31,7 +31,7 @@ export type SignupFormRegisterInput = z.infer<typeof signupFormSchema>;
 const SignupForm = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const { toast } = useToast();
+  const { toast } = useToastModal();
 
   const signupForm = useForm<SignupFormRegisterInput>({
     resolver: zodResolver(signupFormSchema),
@@ -52,13 +52,7 @@ const SignupForm = () => {
       router.push('/');
       router.refresh();
     } catch (error) {
-      if (error instanceof Error) {
-        toast({
-          variant: 'destructive',
-          title: error.message,
-          duration: 2000,
-        });
-      }
+      if (error instanceof Error) toast.warning(error.message, 2000);
     }
   };
 
@@ -66,11 +60,7 @@ const SignupForm = () => {
     const password = signupForm.getValues('password');
     const confirmPassword = signupForm.getValues('confirmPassword');
     if (password !== confirmPassword) {
-      toast({
-        variant: 'destructive',
-        title: '비밀번호가 일치하지 않습니다.',
-        duration: 800,
-      });
+      toast.warning('비밀번호가 일치하지 않습니다.', 800);
     }
   };
 
