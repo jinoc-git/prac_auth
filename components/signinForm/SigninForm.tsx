@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 
+import useToastModal from '@/hooks/useToastModal';
 import { signin, signinWithGoogle } from '@/lib/auth';
 import { signinFormSchema } from '@/schema/signinFormSchema';
 
@@ -19,7 +20,6 @@ import {
   CardTitle,
 } from '../ui/card';
 import { Form } from '../ui/form';
-import { useToast } from '../ui/use-toast';
 
 import type { z } from 'zod';
 
@@ -27,7 +27,7 @@ export type SigninFormRegisterInput = z.infer<typeof signinFormSchema>;
 
 const SigninForm = () => {
   const router = useRouter();
-  const { toast } = useToast();
+  const { toast } = useToastModal();
 
   const signinForm = useForm<SigninFormRegisterInput>({
     resolver: zodResolver(signinFormSchema),
@@ -40,13 +40,7 @@ const SigninForm = () => {
       router.push('/');
       router.refresh();
     } catch (error) {
-      if (error instanceof Error) {
-        toast({
-          variant: 'destructive',
-          title: error.message,
-          duration: 2000,
-        });
-      }
+      if (error instanceof Error) toast.warning(error.message, 2000);
     }
   };
 
