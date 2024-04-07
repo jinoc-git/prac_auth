@@ -6,6 +6,7 @@
 ## 배포 주소
 
 https://simple-auth-page.vercel.app/
+(supabase 활성 프로젝트 개수 제한으로 구글 로그인 기능이 불가)
 
 ## 프로젝트 소개
 
